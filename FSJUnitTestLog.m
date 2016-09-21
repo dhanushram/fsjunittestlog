@@ -131,6 +131,7 @@
         BOOL saved = [[_document XMLData] writeToFile:filePath atomically:NO];
         if (saved) {
             NSLog(@"REPORT LOCATION: %@", filePath);
+            NSLog(@"[[ATTACHMENT|%@]]", filePath); //For JUnit Plugin
         }
         else {
             NSLog(@"REPORT LOCATION SAVE ERROR");
