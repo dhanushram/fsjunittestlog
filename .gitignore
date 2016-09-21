@@ -1,4 +1,2 @@
 *.xccheckout
 **xcuserdata
-FSJUnitTestLogExample/Pods
-Podfile.lock
