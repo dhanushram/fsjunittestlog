@@ -49,7 +49,7 @@
 
 - (void)testAlsoPassExample
 {
-    XCTAssertEqual(21, 12+10, @"Test should pass");
+    XCTAssertEqual(21, 11+10, @"Test should pass");
 }
 
 @end
