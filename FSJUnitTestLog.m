@@ -35,28 +35,20 @@
     return self;
 }
 
-- (void)startObserving {
-    self.document = [[GDataXMLDocument alloc] init];
-    self.document = [_document initWithRootElement:[GDataXMLElement elementWithName:@"testsuites"]];
-    self.suitesElement = [_document rootElement];
-
-}
-
-- (void)stopObserving {
-    [self _writeResultFile];
-}
-
 //-----------------------------------------------------------------
 #pragma mark Test Bundle
 //-----------------------------------------------------------------
 - (void)testBundleWillStart:(NSBundle *)testBundle
 {
-    [self startObserving];
+    self.document = [[GDataXMLDocument alloc] init];
+    self.document = [_document initWithRootElement:[GDataXMLElement elementWithName:@"testsuites"]];
+    self.suitesElement = [_document rootElement];
 }
 
 - (void)testBundleDidFinish:(NSBundle *)testBundle
 {
-    [self stopObserving];
+    [self.suitesElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:[testBundle infoDictionary][@"CFBundleExecutable"]]];
+    [self _writeResultFile];
 }
 
 //-----------------------------------------------------------------
@@ -97,14 +89,13 @@
 - (void)testCaseWillStart:(XCTestCase *)testCase
 {
     self.currentCaseElement = [GDataXMLElement elementWithName:@"testcase"];
-    [_currentCaseElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:[testCase name]]];
 }
 
 - (void)testCaseDidFinish:(XCTestCase *)testCase {
     XCTestCaseRun *testCaseRun = (XCTestCaseRun *) testCase.testRun;
     XCTest *test = [testCaseRun test];
 
-    [_currentCaseElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:[test name]]];
+    [_currentCaseElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:[self cleanName:[test name]]]];
     [_currentCaseElement addAttribute:[GDataXMLNode attributeWithName:@"classname" stringValue:NSStringFromClass([test class])]];
     [_currentCaseElement addAttribute:[GDataXMLNode attributeWithName:@"time" stringValue:[NSString stringWithFormat:@"%f", [testCaseRun testDuration]]]];
     [_currentSuiteElement addChild:_currentCaseElement];
@@ -114,7 +105,7 @@
 - (void)testCase:(XCTestCase *)testCase didFailWithDescription:(NSString *)description inFile:(nullable NSString *)filePath atLine:(NSUInteger)lineNumber {
     GDataXMLElement *failureElement = [GDataXMLElement elementWithName:@"failure"];
     [failureElement setStringValue:description];
-    [failureElement addAttribute:[GDataXMLNode attributeWithName:@"message" stringValue:[NSString stringWithFormat:@"%@:%lu", [filePath lastPathComponent], (unsigned long)lineNumber]]];
+    [failureElement addAttribute:[GDataXMLNode attributeWithName:@"message" stringValue:[NSString stringWithFormat:@"Failed at %@:%lu", [filePath lastPathComponent], (unsigned long)lineNumber]]];
     [_currentCaseElement addChild:failureElement];
 }
 
@@ -140,6 +131,13 @@
     else {
         NSLog(@"ERROR: No document to write.");
     }
+}
+
+- (NSString*) cleanName: (NSString*) uncleanName
+{
+    NSString * retValue = [[uncleanName stringByReplacingOccurrencesOfString:@"-[" withString:@""] stringByReplacingOccurrencesOfString:@"]" withString:@""];
+    NSLog(@"%@", retValue);
+    return [[retValue componentsSeparatedByString:@" "] lastObject];
 }
 
 

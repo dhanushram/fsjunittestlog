@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38060FDF1D95831900963427 /* FSAdditionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38060FDE1D95831900963427 /* FSAdditionalTest.m */; };
 		382AC9051D90B16C00175664 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382AC9041D90B16C00175664 /* Storyboard.storyboard */; };
 		8C8AA6EA14574AB8B387091A /* libPods-FSJUnitTestLogExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9979D926C6C432C83DC8560 /* libPods-FSJUnitTestLogExampleTests.a */; };
 		FD59B7BF17E1E444007E2943 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD59B7BE17E1E444007E2943 /* Foundation.framework */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		1BFB7CAC7136006AF883094D /* Pods-FSJUnitTestLogExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSJUnitTestLogExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FSJUnitTestLogExampleTests/Pods-FSJUnitTestLogExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		38060FDE1D95831900963427 /* FSAdditionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAdditionalTest.m; sourceTree = "<group>"; };
 		382AC9041D90B16C00175664 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		7928FC12FE2F43779228A927 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		962EFF0B97749CD54498E010 /* Pods-FSJUnitTestLogExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSJUnitTestLogExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSJUnitTestLogExampleTests/Pods-FSJUnitTestLogExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				FD59B7ED17E1E450007E2943 /* FSJUnitTestLog */,
 				FD59B7E317E1E444007E2943 /* FSJUnitTestLogExampleTests.m */,
+				38060FDE1D95831900963427 /* FSAdditionalTest.m */,
 				FD59B7DE17E1E444007E2943 /* Supporting Files */,
 			);
 			path = FSJUnitTestLogExampleTests;
@@ -339,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38060FDF1D95831900963427 /* FSAdditionalTest.m in Sources */,
 				FD59B7F017E1E456007E2943 /* FSJUnitTestLog.m in Sources */,
 				FD59B7E417E1E444007E2943 /* FSJUnitTestLogExampleTests.m in Sources */,
 			);
